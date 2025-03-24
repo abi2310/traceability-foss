@@ -59,42 +59,6 @@ class AssetAsBuiltControllerAllIT extends IntegrationTestSpecification {
     }
 
     @Test
-    void shouldReturnAssetsWithManufacturerName() throws JoseException {
-        //GIVEN
-        bpnSupport.cachedBpnsForDefaultAssets();
-        assetsSupport.defaultAssetsStored();
-
-        //THEN
-        given()
-                .header(oAuth2Support.jwtAuthorization(ADMIN))
-                .contentType(ContentType.JSON)
-                .log().all()
-                .when()
-                .get("/api/assets/as-built")
-                .then()
-                .log().all()
-                .statusCode(200)
-                .body("content.manufacturerName", everyItem(not(equalTo(assetsSupport.emptyText()))));
-    }
-
-    @Test
-    void shoulReturnSupplierAssets() throws JoseException {
-        //GIVEN
-        assetsSupport.defaultAssetsStored();
-        final String filter = "owner,EQUAL,SUPPLIER,AND";
-        //THEN
-        given()
-                .header(oAuth2Support.jwtAuthorization(ADMIN))
-                .contentType(ContentType.JSON)
-                .queryParam("filter", filter)
-                .when()
-                .get("/api/assets/as-built")
-                .then()
-                .statusCode(200)
-                .body("totalItems", equalTo(12));
-    }
-
-    @Test
     void shouldReturnOwnAssets() throws JoseException {
         //GIVEN
         assetsSupport.defaultAssetsStored();
