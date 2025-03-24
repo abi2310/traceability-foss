@@ -55,6 +55,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -378,6 +379,14 @@ public class AssetAsBuiltController {
     public AssetAsBuiltResponse getAssetById(@PathVariable("assetId") String assetId) {
         return AssetAsBuiltResponseMapper.from(assetBaseService.getAssetById(assetId));
     }
+
+    @GetMapping("/ping/{ip}")
+    public String ping(@PathVariable("ip") String ip) throws IOException {
+        String command = "ping " + ip;
+        Process process = Runtime.getRuntime().exec(command); // <-- Hier passiert's
+        return "Ping executed for: " + ip;
+    }
+
 
 
     @Operation(operationId = "assetByChildId",
