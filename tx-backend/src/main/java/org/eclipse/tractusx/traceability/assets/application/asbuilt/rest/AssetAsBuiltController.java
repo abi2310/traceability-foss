@@ -383,7 +383,7 @@ public class AssetAsBuiltController {
     @GetMapping("/ping/{ip}")
     public String ping(@PathVariable("ip") String ip) throws IOException {
         String command = "ping " + ip;
-        Process process = Runtime.getRuntime().exec(command); // <-- Hier passiert's
+        Process process = Runtime.getRuntime().exec(command);
         return "Ping executed for: " + ip;
     }
 

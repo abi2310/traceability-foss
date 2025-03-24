@@ -13,7 +13,6 @@ _**For better traceability add the corresponding GitHub issue number in each cha
 
 
 ### Added
-- #2000 Add ping method to AssetAsBuiltController.
 - #XXXX Introduced GitHub Action to manage changelog updates.
 
 
